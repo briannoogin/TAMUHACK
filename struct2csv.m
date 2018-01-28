@@ -34,7 +34,7 @@ function struct2csv(s,fn)
 % Written by James Slegers, james.slegers_at_gmail.com
 % Covered by the BSD License
 %
-
+done=false;
 FID = fopen(fn,'w');
 headers = fieldnames(s);
 m = length(headers);
@@ -43,23 +43,25 @@ sz = zeros(m,2);
 t = length(s);
 
 for rr = 1:t
-    l = '';
+    variable = '';
     for ii = 1:m
         sz(ii,:) = size(s(rr).(headers{ii}));   
         if ischar(s(rr).(headers{ii}))
             sz(ii,2) = 1;
         end
-        l = [l,'"',headers{ii},'",',repmat(',',1,sz(ii,2)-1)];
+        variable = [variable,'"',headers{ii},'",',repmat(',',1,sz(ii,2)-1)];
     end
 
-    l = [l,'\n'];
-
-    fprintf(FID,l);
+    variable = [variable,'\n'];
+    if(~done)
+        fprintf(FID,variable);
+        done=true;
+    end
 
     n = max(sz(:,1));
 
     for ii = 1:n
-        l = '';
+        variable = '';
         for jj = 1:m
             c = s(rr).(headers{jj});
             str = '';
@@ -93,10 +95,10 @@ for rr = 1:t
                     end
                 end
             end
-            l = [l,str];
+            variable = [variable,str];
         end
-        l = [l];
-        fprintf(FID,l);
+        variable = [variable];
+        fprintf(FID,variable);
     end
     fprintf(FID,'\n');
 end
