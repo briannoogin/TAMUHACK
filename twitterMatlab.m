@@ -6,7 +6,7 @@ c = twitter(consumerkey,consumersecret,accesstoken,accesstokensecret);
 searchThing='bakedpotatoes OR #potatoflower OR #nutforpotatoes OR #potatoes4lyf';
 lib=query(100,searchThing,c);
 % always running
-while(true)
+while(c.StatusCode == 'OK')
     changed=false;
     % queries 100 tweets
     temp=query(100,searchThing,c);
