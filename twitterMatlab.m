@@ -30,7 +30,7 @@ while(c.StatusCode == 'OK')
     end
     output = struct('time','','longitude',0,'latitude',0);
     for i = 1:length(lib)
-        output(i).time=lib(i).time;
+        output(i).time=lib(i).time(5:19);
         output(i).longitude=lib(i).location(1).coordinates(1);
         output(i).latitude=lib(i).location(1).coordinates(2);
     end
