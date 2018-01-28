@@ -4,18 +4,25 @@ accesstoken = '957326291543515136-bMc0bb2H6VrSBEOwC9bYn8asAWEUBge';
 accesstokensecret = 'JgKtiW8qe107ImrTMSMtRAbseA0HQMrSpvmrTTGlCx9lX';
 c = twitter(consumerkey,consumersecret,accesstoken,accesstokensecret);
 searchThing='bakedpotatoes OR #potatoflower OR #nutforpotatoes OR #potatoes4lyf';
-lib=query(1000,searchThing,c);
+lib=query(100,searchThing,c);
+% always running
 while(true)
+    changed=false;
+    % queries 100 tweets
     temp=query(100,searchThing,c);
     if(~isempty(lib))
         timeArray=lib(:).time;
         for i=length(temp):-1:1
-            if(ismember(temp(i).time,timeArray))
+            % checks if the new data is in the library
+            if(~ismember(temp(i).time,timeArray))
                 lib(length(lib)+1).time=temp(i).time;
                 lib(length(lib)).location=temp(i).location;
+                changed=true;
             end
         end
     else
+        % library is not empty
+        changed=true;
         for i=length(temp):-1:1
                 lib(length(lib)+1).time=temp(i).time;
                 lib(length(lib)).location=temp(i).location;
@@ -28,7 +35,13 @@ while(true)
         output(i).latitude=lib(i).location(1).coordinates(2);
     end
     struct2csv(output,'library.csv');
-    pause(30);
+    % change the length of the pause depending on if there is a new change to the
+    % library 
+    if(changed)
+        pause(10);
+    else
+        pause(20);
+    end
 end
 
 function list = query(num,searchTerm,magic)
