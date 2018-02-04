@@ -1,7 +1,7 @@
-consumerkey = 'FaVG24EilMLhWvE4aVFZT2ag9';
-consumersecret = 'cNRHs7GsP6UbgNU8Aa3x6d58ZFqvtfBjDE6DwzJRl8opiz2pdT';
-accesstoken = '957326291543515136-bMc0bb2H6VrSBEOwC9bYn8asAWEUBge';
-accesstokensecret = 'JgKtiW8qe107ImrTMSMtRAbseA0HQMrSpvmrTTGlCx9lX';
+consumerkey = %consumer Key (From Twitter)
+consumersecret =  %consumer Secret key (From Twitter)
+accesstoken = %access token (From Twitter)
+accesstokensecret = %secret access token (From Twitter)
 c = twitter(consumerkey,consumersecret,accesstoken,accesstokensecret);
 searchThing='bakedpotatoes OR #potatoflower OR #nutforpotatoes OR #potatoes4lyf';
 lib=query(100,searchThing,c);
