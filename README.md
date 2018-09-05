@@ -17,7 +17,7 @@ The ArcGIS platform was build to create our map interface and use our API's to d
 We had difficulty getting real-time twitter information into the ESRI cloud where all our data is stored. We initially used R to parse our data but then had to use Matlab instead.  
 We also had to learn how to use the ESRI cloud services and gis features. 
 
-## Whats next for our product
+## What's next for our product
 
 With further implementation we would want to have the hospital's display information regarding the current capacity of their hospital and if they had available spots for new patients. This would cut the time down for EMT and Paramedics as our application would suggest the fastest route to hospitals that weren't at full capacity. 
 
